@@ -22,7 +22,7 @@
     <body>
         <div id="wrapper">
 
-            <p>Your gold: <span id="yourgold"></span></p>
+            <p>Your gold: {{ session['gold'] }}</p>
 
             <div id="buildings">
 
@@ -48,8 +48,8 @@
                     <h2>House</h2>
                     <p>(earns 2-5 golds)</p>
                     <form action="/process_money" method="post">
-                        <input type="hidden" name="building" value="house" />
-                        <input type="submit" value="Find Gold!"/>
+                        <input type="hidden" name="building" value="house">
+                        <input type="submit" value="Find Gold!">
                     </form>
                 </div>
 
@@ -57,15 +57,15 @@
                     <h2>Casino</h2>
                     <p>(earns/takes 0-50 golds)</p>
                     <form action="/process_money" method="post">
-                        <input type="hidden" name="building" value="casino" />
-                        <input type="submit" value="Find Gold!"/>
+                        <input type="hidden" name="building" value="casino">
+                        <input type="submit" value="Find Gold!">
                     </form>
                 </div>
 
             </div>
 
             <p>Activities:</p>
-            <textarea rows=10 cols=100 id="activities"></textarea>
+            <textarea rows=10 cols=100>{{ session['activities'] }}</textarea>
 
         </div>
 
