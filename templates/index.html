@@ -11,11 +11,22 @@
                 justify-content: space-between;
             }
 
-            .building{
+            .building {
                 border: solid black 1px;
                 padding: 20px;
                 text-align: center;
                 width: 18%;
+            }
+
+            #activities {
+                height: 200px;
+                overflow: auto;
+                padding: 10px;
+                border: solid black 1px;
+            }
+
+            #activities p {
+                margin: 0;
             }
         </style>
     </head>
@@ -29,7 +40,7 @@
                 <div class="building" id="farm">
                     <h2>Farm</h2>
                     <p>(earns 10-20 golds)</p>
-                    <form action="/process_money" method="post">
+                    <form action="/process_money" method="post" class="form_building">
                         <input type="hidden" name="building" value="farm">
                         <input type="submit" value="Find Gold!">
                     </form>
@@ -38,7 +49,7 @@
                 <div class="building" id="cave">
                     <h2>Cave</h2>
                     <p>(earns 5-10 golds)</p>
-                    <form action="/process_money" method="post">
+                    <form action="/process_money" method="post" class="form_building">
                         <input type="hidden" name="building" value="cave">
                         <input type="submit" value="Find Gold!">
                     </form>
@@ -47,7 +58,7 @@
                 <div class="building" id="house">
                     <h2>House</h2>
                     <p>(earns 2-5 golds)</p>
-                    <form action="/process_money" method="post">
+                    <form action="/process_money" method="post" class="form_building">
                         <input type="hidden" name="building" value="house">
                         <input type="submit" value="Find Gold!">
                     </form>
@@ -56,7 +67,7 @@
                 <div class="building" id="casino">
                     <h2>Casino</h2>
                     <p>(earns/takes 0-50 golds)</p>
-                    <form action="/process_money" method="post">
+                    <form action="/process_money" method="post" class="form_building">
                         <input type="hidden" name="building" value="casino">
                         <input type="submit" value="Find Gold!">
                     </form>
@@ -65,13 +76,12 @@
             </div>
 
             <p>Activities:</p>
-            <textarea rows=10 cols=100>{{ session['activities'] }}</textarea>
+            <div id="activities">
+                {% for item in session['activities'] %}
+                    <p style="color:{{ item[1] }}">{{ item[0] }}</p>
+                {% endfor %}
+            </div>
 
         </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>
-            
-        </script>
     </body>
 </html>

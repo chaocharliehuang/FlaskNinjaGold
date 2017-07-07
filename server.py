@@ -9,7 +9,7 @@ app.secret_key = 'secret'
 def index():
     if session.get('gold') == None and session.get('activities') == None:
         session['gold'] = 0
-        session['activities'] = ''
+        session['activities'] = []
     
     return render_template('index.html')
 
@@ -29,14 +29,16 @@ def process():
     if session['gold'] < 0:
         session['gold'] = 0
 
-    activitiesStr = ''
     if dGold >= 0:
-        activitiesStr += 'Earned '
+        activitiesStr = 'Earned '
+        color = 'green'
     else:
-        activitiesStr += 'Lost '
+        activitiesStr = 'Lost '
+        color = 'red'
     activitiesStr += str(abs(dGold)) + ' gold(s) '
     activitiesStr += 'from the ' + buildingVisited + '!\n'
-    session['activities'] = activitiesStr + session['activities']
+    activitiesTuple = (activitiesStr, color)
+    session['activities'].insert(0, activitiesTuple)
 
     return redirect('/')
 
